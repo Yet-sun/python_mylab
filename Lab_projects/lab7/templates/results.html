@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<h2>{{ the_title }}</h2>
+
+<p>You submitted the following data:</p>
+<table>
+    <tr>
+        <td>Phrase:</td>
+        <td>{{ the_phrase }}</td>
+    </tr>
+    <tr>
+        <td>Letters:</td>
+        <td>{{ the_letters }}</td>
+    </tr>
+</table>
+
+<p>When "{{the_phrase }}" is searched for "{{ the_letters }}", the following
+    results are returned:</p>
+<h3>{{ the_results }}</h3>
+
+<table class="table table-bordered">
+    <h2>searched imformation management:</h2>
+    <tr>
+        <td>IP</td>
+        <td>Phrase</td>
+        <td>Letters</td>
+        <td>Results</td>
+        <td>Time</td>
+    </tr>
+    {% for i in the_content %}
+        <tr>
+            <td>{{ i[0] }}</td>
+            <td>{{ i[1] }}</td>
+            <td>{{ i[2] }}</td>
+            <td>{{ i[3] }}</td>
+            <td>{{ i[4] }}</td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}

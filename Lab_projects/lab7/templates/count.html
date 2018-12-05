@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+{% extends 'base.html' %}
+{% block body %}<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<h2>{{ the_title }}</h2>
+
+<link rel="stylesheet" href="../_common/css/main.css" type="text/css" media="all">
+<link href="sortableTable.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../_common/js/mootools.js"></script>
+<script type="text/javascript" src="sortableTable.js"></script>
+</head>
+<body>
+
+	<div id="container">
+		<div id="example">
+			<div class="tableFilter">
+		  		<form id="tableFilter" onsubmit="myTable.filter(this.id); return false;">Filter: 
+					<select id="column">
+		  				<option value="1">IP</option>
+                        <option value="2">Time</option>
+					</select>
+					<input type="text" id="keyword" />
+					<input type="submit" value="Submit" />
+					<input type="reset" value="Clear" />
+				</form>
+		  </div>
+		  <table id="myTable" cellpadding="0" cellpadding="0">
+              <tr>
+				<th axis="string">IP</th>
+				<th axis="string">Phrase</th>
+				<th axis="string">Letters</th>
+				<th axis="string">Results</th>
+				<th axis="string">Time</th>
+              </tr>
+            {% for i in the_content %}
+                <tr>
+                    <td>{{ i[0] }}</td>
+                    <td>{{ i[1] }}</td>
+                    <td>{{ i[2] }}</td>
+                    <td>{{ i[3] }}</td>
+                    <td>{{ i[4] }}</td>
+                </tr>
+            {% endfor %}
+
+		  </table>
+		<script type="text/javascript">
+			var myTable = {};
+			window.addEvent('domready', function(){
+				myTable = new sortableTable('myTable', {overCls: 'over', onClick: function(){alert(this.id)}});
+			});
+		</script>
+		</div>
+		</div>
+</body>
+{% endblock %}
+</html>
